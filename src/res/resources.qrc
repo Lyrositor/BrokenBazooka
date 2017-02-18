@@ -1,0 +1,9 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+  <qresource>
+    <file>img/door.png</file>
+    <file>img/enemy.png</file>
+    <file>img/hotspot.png</file>
+    <file>img/sprite.png</file>
+  </qresource>
+</RCC>
