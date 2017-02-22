@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>BrokenBazooka</class>
+ <widget class="QMainWindow" name="BrokenBazooka">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1024</width>
+    <height>768</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>BrokenBazooka</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_2">
@@ -94,7 +94,7 @@
               <string>Add Door</string>
              </property>
              <property name="icon">
-              <iconset resource="../res/resources.qrc">
+              <iconset resource="res/resources.qrc">
                <normaloff>:/img/door.png</normaloff>:/img/door.png</iconset>
              </property>
              <property name="iconSize">
@@ -123,7 +123,7 @@
               <string>...</string>
              </property>
              <property name="icon">
-              <iconset resource="../res/resources.qrc">
+              <iconset resource="res/resources.qrc">
                <normaloff>:/img/enemy.png</normaloff>:/img/enemy.png</iconset>
              </property>
              <property name="iconSize">
@@ -143,7 +143,7 @@
               <string>...</string>
              </property>
              <property name="icon">
-              <iconset resource="../res/resources.qrc">
+              <iconset resource="res/resources.qrc">
                <normaloff>:/img/hotspot.png</normaloff>:/img/hotspot.png</iconset>
              </property>
              <property name="iconSize">
@@ -194,34 +194,6 @@
         </item>
         <item row="1" column="3">
          <layout class="QGridLayout" name="layoutEditor">
-          <item row="0" column="2">
-           <widget class="QTableView" name="properties">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>300</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>300</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
-            <attribute name="verticalHeaderVisible">
-             <bool>false</bool>
-            </attribute>
-           </widget>
-          </item>
           <item row="1" column="2">
            <widget class="QListView" name="flags">
             <property name="sizePolicy">
@@ -297,6 +269,58 @@
             </property>
            </widget>
           </item>
+          <item row="0" column="2">
+           <widget class="QTableView" name="properties">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAsNeeded</enum>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="editTriggers">
+             <set>QAbstractItemView::AllEditTriggers</set>
+            </property>
+            <property name="selectionMode">
+             <enum>QAbstractItemView::ExtendedSelection</enum>
+            </property>
+            <property name="showGrid">
+             <bool>false</bool>
+            </property>
+            <property name="gridStyle">
+             <enum>Qt::NoPen</enum>
+            </property>
+            <property name="cornerButtonEnabled">
+             <bool>false</bool>
+            </property>
+            <attribute name="horizontalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+           </widget>
+          </item>
          </layout>
         </item>
        </layout>
@@ -326,7 +350,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1024</width>
      <height>21</height>
     </rect>
    </property>
@@ -612,7 +636,24 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../res/resources.qrc"/>
+  <include location="res/resources.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionExit</sender>
+   <signal>triggered()</signal>
+   <receiver>BrokenBazooka</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

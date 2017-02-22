@@ -8,19 +8,27 @@ find_package(Qt5Widgets REQUIRED)
 
 # Define the Broken Bazooka executable
 set(BB_SOURCES
-        main.cpp
-        main_window.cpp
-        map_editor.cpp
-        tile_selector.cpp)
+        map/map.cpp
+        map/sector.cpp
+        map/tile.cpp
+        util/combo_box_item_delegate.cpp
+        broken_bazooka.cpp
+        main.cpp)
 set(BB_HEADERS
-        main_window.h
+        map/layer.h
+        map/map.h
+        map/sector.h
+        map/tile.h
+        util/combo_box_item_delegate.h
+        util/constants.h
+        broken_bazooka.h
         map_editor.h
         tile_selector.h)
 set(BB_MOC
-        main_window.h)
+        broken_bazooka.h)
 set(BB_RCC
         res/resources.qrc)
 set(BB_UIC
-        main_window.ui)
+        broken_bazooka.ui)
 add_executable(BrokenBazooka ${BB_SOURCES} ${BB_HEADERS} ${BB_MOC} ${BB_RCC} ${BB_UIC})
 target_link_libraries(BrokenBazooka Qt5::Core Qt5::Widgets)

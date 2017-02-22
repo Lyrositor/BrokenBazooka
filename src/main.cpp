@@ -1,11 +1,14 @@
-#include <QApplication>
-
-#include "main_window.h"
+#include <QtWidgets/QApplication>
+#include "broken_bazooka.h"
 
 int main(int argc, char *argv[]) {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    QApplication application(argc, argv);
 
-    return a.exec();
+    // Create the application's main window
+    BrokenBazooka brokenBazooka;
+    brokenBazooka.show();
+
+    // TODO Parse the command-line arguments
+
+    return application.exec();
 }
