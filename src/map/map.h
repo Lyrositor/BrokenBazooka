@@ -1,39 +1,35 @@
 #ifndef MAP_H
 #define MAP_H
 
+#include <QtCore/QLine>
+#include <QtCore/QVector>
 #include <QtWidgets/QGraphicsScene>
-#include <vector>
 
 #include "layer.h"
+#include "map_data.h"
 #include "sector.h"
 
 class BrokenBazooka;
 
 class Map : public QGraphicsScene {
 public:
-    static const int NUM_TILES_X = 256;
-    static const int NUM_TILES_Y = 320;
-    static const int NUM_TILESETS = 20;
-    static const int NUM_TILES_PER_TILESET = 1024;
-
-    Map(BrokenBazooka *parent);
+    Map(MapData *mapData, BrokenBazooka *parent);
 
     void setCurrentSector(Sector *sector);
 
-    QPixmap tile(int tilesetId, int tileId, int paletteId);
+    QPixmap * tile(int tileId, int tilesetId, int paletteId) const;
 
 protected:
     void drawForeground(QPainter *painter, const QRectF &rect) override;
 
 private:
-    Layer *mTilesLayer;
-    Layer *mSpritesLayer;
-    Layer *mEnemiesLayer;
-    Layer *mDoorsLayer;
-    Layer *mHotspotsLayer;
+    MapData * const mMapData;
 
-    Sector *mSectors[NUM_TILES_X/Sector::WIDTH][NUM_TILES_Y/Sector::HEIGHT];
-    std::vector<QPixmap> mTilesets[NUM_TILESETS][NUM_TILES_PER_TILESET];
+    Layer * const mTilesLayer;
+    Layer * const mSpritesLayer;
+    Layer * const mEnemiesLayer;
+    Layer * const mDoorsLayer;
+    Layer * const mHotspotsLayer;
 
     QVector<QLine> mGridLines;
 

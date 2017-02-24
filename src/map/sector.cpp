@@ -90,7 +90,7 @@ QVariant Sector::data(const QModelIndex &index, int role) const {
             return optionsList;
         }
         case 1: {
-            for (int i = 0; i < Map::NUM_TILESETS; i++)
+            for (int i = 0; i < MapData::NUM_TILESETS; i++)
                 optionsList.append(QString::number(i));  // TODO Show the tileset names
             return optionsList;
         }

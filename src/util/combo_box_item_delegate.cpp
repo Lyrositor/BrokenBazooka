@@ -17,7 +17,6 @@ QWidget *ComboBoxItemDelegate::createEditor(
 
     // Populate the combo box with the options
     QComboBox *cb = new QComboBox(parent);
-    int row = index.row();
     cb->addItems(optionsList);
     return cb;
 }

@@ -4,6 +4,7 @@
 #include <QtWidgets/QMainWindow>
 
 #include "map/map.h"
+#include "map/selector.h"
 
 namespace Ui {
     class BrokenBazooka;
@@ -17,7 +18,9 @@ public:
 
     ~BrokenBazooka();
 
-    int currentTileId();
+    SelectorTile * currentMapSelectorTile() const;
+
+    void setCurrentMapSelectorTile(SelectorTile *tile);
 
 public slots:
     // General Slots
@@ -30,8 +33,11 @@ public slots:
 private:
     static const char *WINDOW_TITLE;
 
-    Map *mCurrentMap;
-    int mCurrentTileId;
+    SelectorTile *mCurrentMapSelectorTile;
+
+    Map *mMap;
+    MapData * const mMapData;
+    Selector *mSelector;
     Ui::BrokenBazooka *mUi;
 };
 

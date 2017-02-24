@@ -2,26 +2,30 @@
 #define TILE_H
 
 #include <QtWidgets/QGraphicsItem>
-
-#include "sector.h"
+#include <QtGui/QPainter>
 
 class Tile : public QGraphicsItem {
 public:
     static const int WIDTH = 4 * 8;
     static const int HEIGHT = 4 * 8;
 
-    Tile(int tileId, Sector *sector, QGraphicsItem *parent = Q_NULLPTR);
+    Tile(int id, QGraphicsItem *parent = Q_NULLPTR) : QGraphicsItem(parent), mId(id) {}
+
+    int id() const { return mId; }
+
+    void setId(int id) { mId = id; }
+
+    QRectF boundingRect() const override { return QRectF(0, 0, WIDTH, HEIGHT); }
+
+    void paint(
+            QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget
+    ) override { painter->drawPixmap(0, 0, *tile()); }
 
 protected:
-    QRectF boundingRect() const override;
-
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-
-    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    virtual QPixmap * tile() const = 0;
 
 private:
-    int mTileId;
-    Sector * const mSector;
+    int mId;
 };
 
 #endif // TILE_H
