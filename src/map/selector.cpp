@@ -29,7 +29,10 @@ Selector::Selector(MapData *mapData, QObject *parent) : QGraphicsScene(parent), 
 }
 
 QPixmap * Selector::tile(int tileId) const {
-    return mMapData->tile(tileId, 0, 0);  // TODO Get the current tileset and palette
+    Sector *currentSector = static_cast<BrokenBazooka *>(parent())->currentMapSector();
+    if (currentSector == nullptr)
+        return mMapData->tile(tileId, 0, 0);
+    return mMapData->tile(tileId, currentSector->tileset(), currentSector->palette());
 }
 
 void Selector::drawForeground(QPainter *painter, const QRectF &rect) {

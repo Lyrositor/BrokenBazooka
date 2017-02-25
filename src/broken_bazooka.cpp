@@ -32,6 +32,13 @@ BrokenBazooka::BrokenBazooka(QWidget *parent) :
     mUi->properties->horizontalHeader()->setStretchLastSection(true);
 
     // Connect the relevant signals to their slots
+    for (int x = 0; x < MapData::MAP_TILES_X; x += Sector::WIDTH)
+        for (int y = 0; y < MapData::MAP_TILES_Y; y += Sector::HEIGHT)
+            QObject::connect(
+                    mMapData->sector(x/Sector::WIDTH, y/Sector::HEIGHT),
+                    SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), this,
+                    SLOT(updateSector(const QModelIndex &, const QModelIndex &))
+            );
     QObject::connect(mUi->actionUndo, SIGNAL(triggered()), this, SLOT(undo()));
     QObject::connect(mUi->actionRedo, SIGNAL(triggered()), this, SLOT(redo()));
 }
@@ -51,16 +58,25 @@ void BrokenBazooka::setCurrentMapSelectorTile(SelectorTile *tile) {
     mSelector->update();
 }
 
-void BrokenBazooka::undo() {
-
+Sector * BrokenBazooka::currentMapSector() const {
+    return mMap->currentSector();
 }
 
-void BrokenBazooka::redo() {
-
+void BrokenBazooka::updateSector(const QModelIndex &topLeft, const QModelIndex &bottomRight) {
+    mMap->update();
+    mSelector->update();
 }
 
 void BrokenBazooka::setCurrentMapSector(Sector *sector) {
     mUi->properties->setModel(sector);
     mUi->properties->setColumnWidth(0, mUi->properties->width()/2);
     mMap->setCurrentSector(sector);
+}
+
+void BrokenBazooka::undo() {
+
+}
+
+void BrokenBazooka::redo() {
+
 }

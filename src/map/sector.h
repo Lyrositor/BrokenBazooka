@@ -10,20 +10,10 @@ public:
     static const int WIDTH = 8;
     static const int HEIGHT = 4;
 
-    enum SectorSetting {
-        NONE,
-        INDOORS,
-        EXIT_MOUSE_USABLE,
-        LOST_UNDERWORLD_SPRITES,
-        MAGICANT_SPRITES,
-        ROBOT_SPRITES,
-        BUTTERFLIES,
-        INDOORS_AND_BUTTERFLIES
-    };
-
     Sector(
             int x, int y, int palette = 0, int tileset = 0, int item = 0, int music = 0,
-            SectorSetting setting = NONE, bool teleport = false, int townMapX = 0, int townMapY = 0
+            int setting = 0, bool teleport = false, int townMap = 0, int townMapArrow = 0,
+            int townMapImage = 0, int townMapX = 0, int townMapY = 0
     );
 
     int x() { return mX; }
@@ -34,9 +24,9 @@ public:
 
     int tileset() { return mTileset; }
 
-    int columnCount(const QModelIndex &parent) const override;
+    int columnCount(const QModelIndex &parent) const override { return 2; }
 
-    int rowCount(const QModelIndex &parent) const override;
+    int rowCount(const QModelIndex &parent) const override { return 11; }
 
     QVariant data(const QModelIndex &index, int role) const override;
 
@@ -45,7 +35,24 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const override;
 
 private:
-    static const char *PROPERTY_NAMES[];
+    enum struct Properties {
+        Palette,
+        Tileset,
+        Item,
+        Music,
+        Setting,
+        Teleport,
+        TownMap,
+        TownMapArrow,
+        TownMapImage,
+        TownMapX,
+        TownMapY,
+    };
+
+    static const QStringList PROPERTY_NAMES;
+    static const QStringList SECTOR_SETTING_LABELS;
+    static const QStringList TOWN_MAP_LABELS;
+    static const QStringList TOWN_MAP_ARROW_LABELS;
 
     const int mX;
     const int mY;
@@ -55,11 +62,12 @@ private:
 
     int mItem;
     int mMusic;
-    SectorSetting mSetting;
+    int mSetting;
     bool mTeleport;
 
-    //TownMap mTownMap;
-    //TownMapArrow mTownMapArrow;
+    int mTownMap;
+    int mTownMapArrow;
+    int mTownMapImage;
     int mTownMapX;
     int mTownMapY;
 };

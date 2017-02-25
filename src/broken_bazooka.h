@@ -22,13 +22,17 @@ public:
 
     void setCurrentMapSelectorTile(SelectorTile *tile);
 
+    Sector * currentMapSector() const;
+
 public slots:
+    // Map Editor Slots
+    void setCurrentMapSector(Sector *sector);
+
+    void updateSector(const QModelIndex &topLeft, const QModelIndex & bottomRight);
+
     // General Slots
     void undo();
     void redo();
-
-    // Map Editor Slots
-    void setCurrentMapSector(Sector *sector);
 
 private:
     static const char *WINDOW_TITLE;

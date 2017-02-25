@@ -42,6 +42,10 @@ Map::Map(MapData *mapData, BrokenBazooka *parent) :
         );
 }
 
+Sector * Map::currentSector() const {
+    return mCurrentSector;
+}
+
 void Map::setCurrentSector(Sector *sector) {
     mCurrentSector = sector;
     update();

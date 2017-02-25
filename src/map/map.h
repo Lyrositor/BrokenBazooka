@@ -12,8 +12,11 @@
 class BrokenBazooka;
 
 class Map : public QGraphicsScene {
+    Q_OBJECT
 public:
     Map(MapData *mapData, BrokenBazooka *parent);
+
+    Sector * currentSector() const;
 
     void setCurrentSector(Sector *sector);
 
