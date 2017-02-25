@@ -13,5 +13,7 @@ QPixmap * SelectorTile::tile() const {
 
 void SelectorTile::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     BrokenBazooka *brokenBazooka = static_cast<BrokenBazooka *>(scene()->parent());
-    brokenBazooka->setCurrentMapSelectorTile(this);
+    brokenBazooka->setCurrentMapSelectorTile(
+            brokenBazooka->currentMapSelectorTile() != this ? this : nullptr
+    );
 }

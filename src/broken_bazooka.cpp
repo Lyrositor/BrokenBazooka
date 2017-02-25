@@ -71,6 +71,7 @@ void BrokenBazooka::setCurrentMapSector(Sector *sector) {
     mUi->properties->setModel(sector);
     mUi->properties->setColumnWidth(0, mUi->properties->width()/2);
     mMap->setCurrentSector(sector);
+    mSelector->update();
 }
 
 void BrokenBazooka::undo() {

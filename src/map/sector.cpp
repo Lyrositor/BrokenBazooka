@@ -131,6 +131,12 @@ QVariant Sector::data(const QModelIndex &index, int role) const {
                 optionsList.append(item);
             return optionsList;
         }
+        case Properties::Music: {
+            int numMusicEntries = 165; // TODO Get the real value
+            for (int i = 0; i < numMusicEntries; i++)
+                optionsList.append(QString::number(i));
+            return optionsList;
+        }
         case Properties::Setting:
             return SECTOR_SETTING_LABELS;
         case Properties::TownMap:
