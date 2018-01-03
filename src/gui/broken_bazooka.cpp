@@ -1,13 +1,18 @@
 #include "broken_bazooka.h"
 #include "ui_broken_bazooka.h"
 
+#include <stdexcept>
+
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QMessageBox>
+
 #include "util/combo_box_item_delegate.h"
 
 const char *BrokenBazooka::WINDOW_TITLE = "Broken Bazooka";
 
 BrokenBazooka::BrokenBazooka(QWidget *parent) :
         QMainWindow(parent), mCurrentMapSelectorTile(nullptr), mUi(new Ui::BrokenBazooka),
-        mMapData(new MapData) {
+        mMapData(new MapData), mCurrentProject(nullptr) {
     // Load the UI for this window
     mUi->setupUi(this);
     setWindowTitle(WINDOW_TITLE);
@@ -39,6 +44,7 @@ BrokenBazooka::BrokenBazooka(QWidget *parent) :
                     SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), this,
                     SLOT(updateSector(const QModelIndex &, const QModelIndex &))
             );
+    QObject::connect(mUi->actionOpenProject, SIGNAL(triggered()), this, SLOT(openProject()));
     QObject::connect(mUi->actionUndo, SIGNAL(triggered()), this, SLOT(undo()));
     QObject::connect(mUi->actionRedo, SIGNAL(triggered()), this, SLOT(redo()));
 }
@@ -47,6 +53,9 @@ BrokenBazooka::~BrokenBazooka() {
     delete mMap;
     delete mMapData;
     delete mUi;
+
+    if (mCurrentProject != nullptr)
+        delete mCurrentProject;
 }
 
 SelectorTile * BrokenBazooka::currentMapSelectorTile() const {
@@ -72,6 +81,27 @@ void BrokenBazooka::setCurrentMapSector(Sector *sector) {
     mUi->properties->setColumnWidth(0, mUi->properties->width()/2);
     mMap->setCurrentSector(sector);
     mSelector->update();
+}
+
+void BrokenBazooka::openProject() {
+    // Ask the user to locate the CoilSnake project
+    QString projectPath = QFileDialog::getOpenFileName(
+            this, tr("Open CoilSnake Project"), QDir::homePath(),
+            tr("CoilSnake Project (Project.snake)")
+    );
+    if (projectPath.isEmpty())
+        return;
+
+    // Try to open the project
+    try {
+        mCurrentProject = new Project(projectPath.toStdString());
+    } catch (std::runtime_error &e) {
+        QMessageBox::critical(
+                this, tr("Invalid project"),
+                tr("The specified project does not appear to be valid.")
+        );
+        return;
+    }
 }
 
 void BrokenBazooka::undo() {

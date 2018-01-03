@@ -1,6 +1,6 @@
 #include "selector.h"
 
-#include "../broken_bazooka.h"
+#include "gui/broken_bazooka.h"
 
 Selector::Selector(MapData *mapData, QObject *parent) : QGraphicsScene(parent), mMapData(mapData) {
     setBackgroundBrush(Qt::black);

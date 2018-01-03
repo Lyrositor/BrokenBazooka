@@ -3,7 +3,7 @@
 #include <QtCore/QSize>
 
 #include "map.h"
-#include "util/constants.h"
+#include "gui/util/constants.h"
 
 const QStringList Sector::PROPERTY_NAMES = {
         /* 0  */ "Palette",

@@ -2,6 +2,7 @@
 #define MAIN_WINDOW_H
 
 #include <QtWidgets/QMainWindow>
+#include <project/project.h>
 
 #include "map/map.h"
 #include "map/selector.h"
@@ -31,11 +32,14 @@ public slots:
     void updateSector(const QModelIndex &topLeft, const QModelIndex & bottomRight);
 
     // General Slots
+    void openProject();
     void undo();
     void redo();
 
 private:
     static const char *WINDOW_TITLE;
+
+    Project *mCurrentProject;
 
     SelectorTile *mCurrentMapSelectorTile;
 

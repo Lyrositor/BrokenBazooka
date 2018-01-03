@@ -2,7 +2,7 @@
 
 #include <QGraphicsSceneMouseEvent>
 
-#include "../broken_bazooka.h"
+#include "gui/broken_bazooka.h"
 
 MapTile::MapTile(int id, Sector *sector, QGraphicsItem *parent) :
         Tile(id, parent), mSector(sector) {

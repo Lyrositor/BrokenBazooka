@@ -1,6 +1,6 @@
 #include "selector_tile.h"
 
-#include "../broken_bazooka.h"
+#include "gui/broken_bazooka.h"
 
 SelectorTile::SelectorTile(int id, QGraphicsItem *parent) :
         Tile(id, parent) {

@@ -2,7 +2,7 @@
 
 #include <QScrollBar>
 
-#include "map/tile.h"
+#include "gui/map/tile.h"
 
 MapEditor::MapEditor(QWidget *parent) : QGraphicsView(parent) {
     setAlignment(Qt::AlignTop | Qt::AlignLeft);
