@@ -27,13 +27,14 @@ BrokenBazooka::BrokenBazooka(QWidget *parent) :
     mUi->tileSelector->setScene(mSelector);
     mUi->tileSelector->setFixedHeight(
             static_cast<int>(mSelector->height()) +
-                    qApp->style()->pixelMetric(QStyle::PM_ScrollBarExtent) + 2
+                    dynamic_cast<QApplication *>(QApplication::instance())->style()->pixelMetric(
+                            QStyle::PM_ScrollBarExtent
+                    ) + 2
     );
     mUi->tileSelector->centerOn(0, 0);
 
     // Set up the delegates for the properties viewer
-    ComboBoxItemDelegate* cbid = new ComboBoxItemDelegate(mUi->properties);
-    mUi->properties->setItemDelegate(cbid);
+    mUi->properties->setItemDelegate(new ComboBoxItemDelegate(mUi->properties));
     mUi->properties->horizontalHeader()->setStretchLastSection(true);
 
     // Connect the relevant signals to their slots
@@ -53,9 +54,7 @@ BrokenBazooka::~BrokenBazooka() {
     delete mMap;
     delete mMapData;
     delete mUi;
-
-    if (mCurrentProject != nullptr)
-        delete mCurrentProject;
+    delete mCurrentProject;
 }
 
 SelectorTile * BrokenBazooka::currentMapSelectorTile() const {

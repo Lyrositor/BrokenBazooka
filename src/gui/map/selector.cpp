@@ -11,7 +11,7 @@ Selector::Selector(MapData *mapData, QObject *parent) : QGraphicsScene(parent), 
     // Create the tiles
     for (int x = 0, s = 0; x < NUM_TILES_X; x++) {
         for (int y = 0; y < NUM_TILES_Y; y++, s++) {
-            SelectorTile *tile = new SelectorTile(s);
+            auto *tile = new SelectorTile(s);
             addItem(tile);
             tile->setPos(x * Tile::WIDTH, y * Tile::WIDTH);
         }
@@ -29,7 +29,7 @@ Selector::Selector(MapData *mapData, QObject *parent) : QGraphicsScene(parent), 
 }
 
 QPixmap * Selector::tile(int tileId) const {
-    Sector *currentSector = static_cast<BrokenBazooka *>(parent())->currentMapSector();
+    Sector *currentSector = dynamic_cast<BrokenBazooka *>(parent())->currentMapSector();
     if (currentSector == nullptr)
         return mMapData->tile(tileId, 0, 0);
     return mMapData->tile(tileId, currentSector->tileset(), currentSector->palette());
@@ -43,7 +43,7 @@ void Selector::drawForeground(QPainter *painter, const QRectF &rect) {
     painter->drawLines(mGridLines);
 
     // Draw the currently selected tile, if applicable
-    SelectorTile *currentTile = static_cast<BrokenBazooka *>(parent())->currentMapSelectorTile();
+    SelectorTile *currentTile = dynamic_cast<BrokenBazooka *>(parent())->currentMapSelectorTile();
     if (currentTile != nullptr) {
         painter->setPen(Qt::yellow);
         int x1 = (currentTile->id() / NUM_TILES_Y) * Tile::WIDTH;

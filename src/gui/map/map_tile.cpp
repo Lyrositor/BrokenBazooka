@@ -9,12 +9,12 @@ MapTile::MapTile(int id, Sector *sector, QGraphicsItem *parent) :
 }
 
 QPixmap * MapTile::tile() const {
-    Map *map = static_cast<Map *>(scene());
+    auto *map = dynamic_cast<Map *>(scene());
     return map->tile(id(), mSector->tileset(), mSector->palette());
 }
 
 void MapTile::mousePressEvent(QGraphicsSceneMouseEvent *event) {
-    BrokenBazooka *brokenBazooka = static_cast<BrokenBazooka *>(scene()->parent());
+    auto *brokenBazooka = dynamic_cast<BrokenBazooka *>(scene()->parent());
 
     // Set the current properties to this tile's sectors'
     brokenBazooka->setCurrentMapSector(mSector);

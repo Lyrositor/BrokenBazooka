@@ -5,11 +5,11 @@
 
 class Layer : public QGraphicsItem {
 public:
-    Layer(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsItem(parent) { }
+    explicit Layer(QGraphicsItem *parent = Q_NULLPTR) : QGraphicsItem(parent) { }
 
-    QRectF boundingRect() const { return QRectF(0, 0, 0, 0); }
+    QRectF boundingRect() const override { return {0, 0, 0, 0}; }
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) { }
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override { }
 };
 
 #endif // LAYER_H

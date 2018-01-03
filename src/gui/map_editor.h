@@ -7,7 +7,7 @@ class MapEditor : public QGraphicsView {
     Q_OBJECT
 
 public:
-    MapEditor(QWidget *parent = 0);
+    explicit MapEditor(QWidget *parent = nullptr);
 };
 
 #endif // MAP_EDITOR_H

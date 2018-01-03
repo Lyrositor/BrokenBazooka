@@ -7,7 +7,7 @@ class TileSelector : public QGraphicsView {
     Q_OBJECT
 
 public:
-    TileSelector(QWidget *parent = 0);
+    explicit TileSelector(QWidget *parent = nullptr);
 };
 
 #endif // TILE_SELECTOR_H

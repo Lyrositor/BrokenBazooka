@@ -7,13 +7,16 @@ SelectorTile::SelectorTile(int id, QGraphicsItem *parent) :
 }
 
 QPixmap * SelectorTile::tile() const {
-    Selector *selector = static_cast<Selector *>(scene());
+    auto *selector = dynamic_cast<Selector *>(scene());
     return selector->tile(id());
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-parameter"
 void SelectorTile::mousePressEvent(QGraphicsSceneMouseEvent *event) {
-    BrokenBazooka *brokenBazooka = static_cast<BrokenBazooka *>(scene()->parent());
+    auto *brokenBazooka = dynamic_cast<BrokenBazooka *>(scene()->parent());
     brokenBazooka->setCurrentMapSelectorTile(
             brokenBazooka->currentMapSelectorTile() != this ? this : nullptr
     );
 }
+#pragma clang diagnostic pop

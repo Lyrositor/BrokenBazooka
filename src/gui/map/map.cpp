@@ -24,7 +24,7 @@ Map::Map(MapData *mapData, BrokenBazooka *parent) :
     // Create the background tiles and associated sectors
     for (int x = 0; x < MapData::MAP_TILES_X; x++) {
         for (int y = 0; y < MapData::MAP_TILES_Y; y++) {
-            MapTile *tile = new MapTile(
+            auto *tile = new MapTile(
                     0, mapData->sector(x/Sector::WIDTH, y/Sector::HEIGHT), mTilesLayer
             );
             tile->setPos(x * Tile::WIDTH, y * Tile::WIDTH);

@@ -7,17 +7,17 @@ class ComboBoxItemDelegate : public QStyledItemDelegate {
     Q_OBJECT
 
 public:
-    ComboBoxItemDelegate(QObject *parent=0) : QStyledItemDelegate(parent) {}
+    explicit ComboBoxItemDelegate(QObject *parent = nullptr) : QStyledItemDelegate(parent) {}
 
-    virtual QWidget *createEditor(
+    QWidget *createEditor(
             QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index
-    ) const;
+    ) const override;
 
-    virtual void setEditorData(QWidget *editor, const QModelIndex &index) const;
+    void setEditorData(QWidget *editor, const QModelIndex &index) const override;
 
-    virtual void setModelData(
+    void setModelData(
             QWidget *editor, QAbstractItemModel *model, const QModelIndex &index
-    ) const;
+    ) const override;
 
 protected slots:
     void updateData(int index);

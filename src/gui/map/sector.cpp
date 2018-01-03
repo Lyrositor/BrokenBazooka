@@ -5,7 +5,7 @@
 #include "map.h"
 #include "gui/util/constants.h"
 
-const QStringList Sector::PROPERTY_NAMES = {
+const QStringList Sector::PROPERTY_NAMES = { // NOLINT
         /* 0  */ "Palette",
         /* 1  */ "Tileset",
         /* 2  */ "Item",
@@ -19,7 +19,7 @@ const QStringList Sector::PROPERTY_NAMES = {
         /* 10 */ "Town Map Y"
 };
 
-const QStringList Sector::SECTOR_SETTING_LABELS = {
+const QStringList Sector::SECTOR_SETTING_LABELS = { // NOLINT
         /* 0 */ "None",
         /* 1 */ "Indoors",
         /* 2 */ "Exit mouse usable",
@@ -30,7 +30,7 @@ const QStringList Sector::SECTOR_SETTING_LABELS = {
         /* 7 */ "Indoors and butterflies"
 };
 
-const QStringList Sector::TOWN_MAP_LABELS = {
+const QStringList Sector::TOWN_MAP_LABELS = { // NOLINT
         /* 0 */ "None",
         /* 1 */ "Onett",
         /* 2 */ "Twoson",
@@ -41,7 +41,7 @@ const QStringList Sector::TOWN_MAP_LABELS = {
         /* 7 */ "None 2"
 };
 
-const QStringList Sector::TOWN_MAP_ARROW_LABELS = {
+const QStringList Sector::TOWN_MAP_ARROW_LABELS = { // NOLINT
         /* 0 */ "None",
         /* 1 */ "Up",
         /* 2 */ "Down",
@@ -127,7 +127,7 @@ QVariant Sector::data(const QModelIndex &index, int role) const {
             QVector<QString> items = {
                     "Exit Mouse", "Burger", "Broken Bazooka"
             }; // TODO Get the actual item names
-            for (QString item : items)
+            for (const QString &item : items)
                 optionsList.append(item);
             return optionsList;
         }

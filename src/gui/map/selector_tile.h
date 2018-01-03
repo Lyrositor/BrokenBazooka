@@ -7,12 +7,12 @@
 
 class SelectorTile : public Tile {
 public:
-    SelectorTile(int id, QGraphicsItem *parent = Q_NULLPTR);
+    explicit SelectorTile(int id, QGraphicsItem *parent = Q_NULLPTR);
 
 protected:
-    QPixmap * tile() const;
+    QPixmap * tile() const override;
 
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
 };
 
 #endif // SELECTOR_TILE_H

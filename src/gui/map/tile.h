@@ -9,13 +9,15 @@ public:
     static const int WIDTH = 4 * 8;
     static const int HEIGHT = 4 * 8;
 
-    Tile(int id, QGraphicsItem *parent = Q_NULLPTR) : QGraphicsItem(parent), mId(id) {}
+    explicit Tile(int id, QGraphicsItem *parent = Q_NULLPTR) : QGraphicsItem(parent), mId(id) {}
 
     int id() const { return mId; }
 
     void setId(int id) { mId = id; }
 
-    QRectF boundingRect() const override { return QRectF(0, 0, WIDTH, HEIGHT); }
+    QRectF boundingRect() const override {
+        return {0, 0, static_cast<qreal>(WIDTH), static_cast<qreal>(HEIGHT)};
+    }
 
     void paint(
             QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget

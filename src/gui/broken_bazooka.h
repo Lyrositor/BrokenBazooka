@@ -15,9 +15,9 @@ class BrokenBazooka : public QMainWindow {
     Q_OBJECT
 
 public:
-    explicit BrokenBazooka(QWidget *parent = 0);
+    explicit BrokenBazooka(QWidget *parent = nullptr);
 
-    ~BrokenBazooka();
+    ~BrokenBazooka() override;
 
     SelectorTile * currentMapSelectorTile() const;
 
